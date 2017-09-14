@@ -1,5 +1,5 @@
 # MyUnityScripts
-C# scripts I've created for my own projects- They might have dependencies of third party scripts etc as they are taken
+C# scripts I've created for my own projects- They might have dependencies on 3rd party scripts etc as they are taken
 from my projects-SrrY
 
 # Platform Mover
