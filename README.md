@@ -1,5 +1,7 @@
 # MyUnityScripts
 C# scripts I've created for my own projects 
+#WARNING They might have dependencies of third party scripts etc as they are taken
+from my projects-SrrY
 
 # Platform Mover
 ![Alt text](http://i.imgur.com/8xQVUPA.png)
