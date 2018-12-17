@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Sirenix.OdinInspector;
 
 public class GenerateNavLinks : MonoBehaviour
 {
     public float linkWidth;
     public bool bidirectionalLinks;
-    NavLinkTag[] navtags;
+    public NavLinkTag[] navtags;
     Vector3 closestPointFromAToB;
     Vector3 closestPointFromBToA;
     public float linkCompenstationAmount;
-    List<BoxCollider> floors = new List<BoxCollider>();
-    List<BoxCollider> walls = new List<BoxCollider>();
-    List<BoxCollider> ceilings = new List<BoxCollider>();
+    public List<BoxCollider> floors = new List<BoxCollider>();
+    public List<BoxCollider> walls = new List<BoxCollider>();
+    public List<BoxCollider> ceilings = new List<BoxCollider>();
     public bool debugLines;
     public float wallConnectThreshold;
     BoxCollider[] allBoxes;
 
-
+    [Button]
     public void DoGenerateLinks()
     {
         GetNavLinkTagTypes();
@@ -47,25 +48,31 @@ public class GenerateNavLinks : MonoBehaviour
             var box = allBoxes[index];
 
             var i = box.gameObject.GetComponent<NavLinkTag>();
-            var ii = i.RoomPieceType;
 
-            if (ii == NavLinkTag.typo.Floor)
+            if(i != null)
             {
-                //var iii = i.gameObject.GetComponents<BoxCollider>();
-                floors.Add(box);
+                var ii = i.RoomPieceType;
+
+                if (ii == NavLinkTag.typo.Floor)
+                {
+                    //var iii = i.gameObject.GetComponents<BoxCollider>();
+                    floors.Add(box);
+                }
+
+                if (ii == NavLinkTag.typo.Wall)
+                {
+                    //var iii = i.gameObject.GetComponents<BoxCollider>();
+                    walls.Add(box);
+                }
+
+                if (ii == NavLinkTag.typo.Ceiling)
+                {
+                    //var iii = i.gameObject.GetComponents<BoxCollider>();
+                    ceilings.Add(box);
+                }
             }
 
-            if (ii == NavLinkTag.typo.Wall)
-            {
-                //var iii = i.gameObject.GetComponents<BoxCollider>();
-                walls.Add(box);
-            }
-
-            if (ii == NavLinkTag.typo.Ceiling)
-            {
-                //var iii = i.gameObject.GetComponents<BoxCollider>();
-                ceilings.Add(box);
-            }
+           
         }
     }
 
